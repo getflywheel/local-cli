@@ -1,0 +1,182 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type HostConnection {
+    accountId: String
+    hostId: HostId
+    remoteSiteEnv: JSON
+    remoteSiteId: String
+}
+
+type Job {
+    error: JSON
+    id: ID!
+    logs: String
+    status: JobStatus!
+}
+
+type Mutation {
+    "Placeholder field so the schema can be extended."
+    _empty: String
+    addSite(input: AddSiteInput): Job
+    "Stop and then start services for the specified site."
+    restartSite(id: ID!): Site
+    "Start Live Link Pro for the specified site."
+    startLiveLinkPro(id: ID!): SiteLiveLinkProSettings
+    "Start services for the specified site."
+    startSite(id: ID!): Site
+    "Stops all running sites."
+    stopAllSites: Boolean
+    "Stop Live Link Pro for the specified site."
+    stopLiveLinkPro(id: ID!): SiteLiveLinkProSettings
+    "Stop services for the specified site. Note, this will also handle dumping the site database."
+    stopSite(id: ID!): Site
+}
+
+type Query {
+    "Placeholder field so the schema can be extended."
+    _empty: String
+    job(id: ID!): Job
+    jobs: [Job]
+    site(id: ID!): Site
+    sites: [Site]
+}
+
+type Site {
+    autoEnableInstantReload: Boolean
+    callToActionBannerDismissed: Boolean
+    domain: String!
+    host: String!
+    hostConnections: [HostConnection]
+    httpPort: Int
+    id: ID!
+    liveLinkProSettings: SiteLiveLinkProSettings
+    localVersion: String
+    longPath: String!
+    multiSite: MultiSite
+    multiSiteDomains: [String]
+    mysql: SiteMySQLInfo
+    name: String!
+    path: String!
+    paths: SitePaths!
+    services: [SiteService]
+    status: SiteStatus
+    url: String!
+    workspace: String
+}
+
+type SiteLiveLinkProSettings {
+    basicAuthPassword: String
+    basicAuthUsername: String
+    subdomain: String
+}
+
+type SiteMySQLInfo {
+    database: String
+    password: String
+    user: String
+}
+
+type SitePaths {
+    app: String
+    conf: String
+    confTemplates: String
+    logs: String
+    runData: String
+    sql: String
+    webRoot: String
+}
+
+type SiteService {
+    name: String!
+    ports: JSON
+    role: SiteServiceRole
+    type: SiteServiceType
+    version: String!
+}
+
+type Subscription {
+    "Placeholder field so the schema can be extended."
+    _empty: String
+    sitesUpdated: [Site]
+}
+
+enum HostId {
+    flywheel
+    wpe
+}
+
+enum JobStatus {
+    created
+    failed
+    running
+    successful
+}
+
+enum MultiSite {
+    No
+    Subdir
+    Subdomain
+}
+
+enum SiteEnvironment {
+    custom
+    preferred
+}
+
+enum SiteServiceRole {
+    db
+    http
+    php
+}
+
+enum SiteServiceType {
+    lightning
+}
+
+enum SiteStatus {
+    adding
+    cloning
+    container_missing
+    copying
+    creating
+    deleting
+    exporting
+    exporting_db
+    halted
+    processing
+    provisioning
+    provisioning_error
+    restarting
+    running
+    saving
+    starting
+    stopping
+    updating_wp
+    wordpress_install_error
+}
+
+input AddSiteInput {
+    blueprint: String
+    database: String
+    domain: String!
+    environment: SiteEnvironment
+    goToSite: Boolean
+    multiSite: MultiSite
+    name: String!
+    path: String!
+    phpVersion: String
+    skipWPInstall: Boolean
+    webServer: String
+    wpAdminEmail: String
+    wpAdminPassword: String
+    wpAdminUsername: String
+}
+
+
+scalar JSON

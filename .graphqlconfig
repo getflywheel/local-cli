@@ -1,0 +1,16 @@
+{
+  "name": "Local",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Local": {
+        "url": "http://127.0.0.1:4000/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "Authorization": "Bearer local-dev"
+        },
+        "introspect": true
+      }
+    }
+  }
+}
