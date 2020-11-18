@@ -1,7 +1,9 @@
-local-cli
+Local CLI
 =========
 
+CLI for [Local](https://localwp.com), the #1 local WordPress development tool.
 
+⚠ **Note:** This CLI is experimental and commands/arguments are subject to change.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/local-cli.svg)](https://npmjs.org/package/@getflywheel/local-cli)
@@ -18,7 +20,7 @@ $ npm install -g @getflywheel/local-cli
 $ local-cli COMMAND
 running command...
 $ local-cli (-v|--version|version)
-@getflywheel/local-cli/0.0.0 darwin-x64 node-v12.13.0
+@getflywheel/local-cli/0.0.1 darwin-x64 node-v12.13.0
 $ local-cli --help [COMMAND]
 USAGE
   $ local-cli COMMAND
@@ -61,7 +63,7 @@ EXAMPLE
   $ local-cli list
 ```
 
-_See code: [src/commands/list-sites.ts](https://github.com/getflywheel/local-cli/blob/v0.0.0/src/commands/list-sites.ts)_
+_See code: [src/commands/list-sites.ts](https://github.com/getflywheel/local-cli/blob/v0.0.1/src/commands/list-sites.ts)_
 
 ## `local-cli start-site SITEID`
 
@@ -75,7 +77,7 @@ EXAMPLE
   $ local-cli start-site 6mC6PsMCh
 ```
 
-_See code: [src/commands/start-site.ts](https://github.com/getflywheel/local-cli/blob/v0.0.0/src/commands/start-site.ts)_
+_See code: [src/commands/start-site.ts](https://github.com/getflywheel/local-cli/blob/v0.0.1/src/commands/start-site.ts)_
 
 ## `local-cli stop-site SITEID`
 
@@ -89,5 +91,5 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/stop-site.ts](https://github.com/getflywheel/local-cli/blob/v0.0.0/src/commands/stop-site.ts)_
+_See code: [src/commands/stop-site.ts](https://github.com/getflywheel/local-cli/blob/v0.0.1/src/commands/stop-site.ts)_
 <!-- commandsstop -->
