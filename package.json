@@ -1,6 +1,6 @@
 {
   "name": "@getflywheel/local-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "WPEngine, Inc.",
   "bin": {
     "local-cli": "./bin/run"
@@ -46,7 +46,12 @@
   ],
   "homepage": "https://github.com/getflywheel/local-cli",
   "keywords": [
-    "oclif"
+    "oclif",
+    "local",
+    "localwp",
+    "local by flywheel",
+    "graphql",
+    "wordpress"
   ],
   "license": "MIT",
   "main": "lib/index.js",
