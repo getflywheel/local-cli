@@ -1,6 +1,6 @@
 {
   "name": "@getflywheel/local-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "WPEngine, Inc.",
   "bin": {
     "local-cli": "./bin/run"

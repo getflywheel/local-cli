@@ -5,9 +5,8 @@ CLI for [Local](https://localwp.com), the #1 local WordPress development tool.
 
 ⚠️ **Note:** This CLI is experimental and commands/arguments are subject to change.
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/local-cli.svg)](https://npmjs.org/package/@getflywheel/local-cli)
-[![License](https://img.shields.io/npm/l/local-cli.svg)](https://github.com/getflywheel/local-cli/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/@getflywheel/local-cli.svg)](https://npmjs.org/package/@getflywheel/local-cli)
+[![License](https://img.shields.io/npm/l/@getflywheel/local-cli.svg)](https://github.com/getflywheel/local-cli/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
