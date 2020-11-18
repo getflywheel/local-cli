@@ -26,6 +26,8 @@ type Mutation {
     addSite(input: AddSiteInput): Job
     "Stop and then start services for the specified site."
     restartSite(id: ID!): Site
+    "Star a site."
+    starSite(id: ID!): Site
     "Start Live Link Pro for the specified site."
     startLiveLinkPro(id: ID!): SiteLiveLinkProSettings
     "Start services for the specified site."
@@ -36,6 +38,10 @@ type Mutation {
     stopLiveLinkPro(id: ID!): SiteLiveLinkProSettings
     "Stop services for the specified site. Note, this will also handle dumping the site database."
     stopSite(id: ID!): Site
+    "Toggle whether or not to sort sites by last started in the sidebar."
+    toggleSortSitesByLastStarted(sortByLastStarted: Boolean!): Boolean
+    "Unstar a site."
+    unstarSite(id: ID!): Site
 }
 
 type Query {
@@ -44,7 +50,9 @@ type Query {
     job(id: ID!): Job
     jobs: [Job]
     site(id: ID!): Site
-    sites: [Site]
+    sites(filters: SiteFilters): [Site]
+    "Determine whether or not the site's sidebar should be sorted by the time's sites were last started."
+    sortSitesByLastStarted: Boolean
 }
 
 type Site {
@@ -55,6 +63,7 @@ type Site {
     hostConnections: [HostConnection]
     httpPort: Int
     id: ID!
+    isStarred: Boolean
     liveLinkProSettings: SiteLiveLinkProSettings
     localVersion: String
     longPath: String!
@@ -65,7 +74,8 @@ type Site {
     path: String!
     paths: SitePaths!
     services: [SiteService]
-    status: SiteStatus
+    siteLastStartedTimestamp: EpochTimestamp
+    status: SiteStatus!
     url: String!
     workspace: String
 }
@@ -103,6 +113,8 @@ type SiteService {
 type Subscription {
     "Placeholder field so the schema can be extended."
     _empty: String
+    siteStatusChanged: Site
+    siteUpdated(id: ID): Site
     sitesUpdated: [Site]
 }
 
@@ -152,6 +164,14 @@ enum SiteStatus {
     processing
     provisioning
     provisioning_error
+    pulling
+    pulling_finalizing
+    pulling_provisioning
+    pulling_request_backup
+    pushing
+    pushing_preparing
+    pushing_processing
+    pushing_v2
     restarting
     running
     saving
@@ -178,5 +198,11 @@ input AddSiteInput {
     wpAdminUsername: String
 }
 
+input SiteFilters {
+    workspace: String
+}
+
 
 scalar JSON
+
+scalar EpochTimestamp
