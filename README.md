@@ -3,7 +3,8 @@ Local CLI
 
 CLI for [Local](https://localwp.com), the #1 local WordPress development tool.
 
-⚠️ **Note:** This CLI is experimental and commands/arguments are subject to change.
+⚠️ **Note:** This CLI is experimental and commands/arguments are subject to change.  If you have questions, feature ideas, 
+or general comments about the future of Local CLI, we encourage you to [submit an Issue on GitHub](https://github.com/getflywheel/local-cli/issues).
 
 [![Version](https://img.shields.io/npm/v/@getflywheel/local-cli.svg)](https://npmjs.org/package/@getflywheel/local-cli)
 [![License](https://img.shields.io/npm/l/@getflywheel/local-cli.svg)](https://github.com/getflywheel/local-cli/blob/master/package.json)
