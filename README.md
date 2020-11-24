@@ -10,9 +10,15 @@ or general comments about the future of Local CLI, we encourage you to [submit a
 [![License](https://img.shields.io/npm/l/@getflywheel/local-cli.svg)](https://github.com/getflywheel/local-cli/blob/master/package.json)
 
 <!-- toc -->
+* [Requirements](#requirements)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+# Requirements
+* [Local](https://localwp.com) 5.9.2 or newer, which introduced the Local GraphQL API
+* Node.js
+* NPM/Yarn
+
 # Usage
 <!-- usage -->
 ```sh-session
