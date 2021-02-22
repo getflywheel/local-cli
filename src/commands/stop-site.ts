@@ -1,5 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import Table = require('cli-table')
+import getSiteId from '../helpers/get-site-id'
 import createGraphQLClient, {gql} from '../helpers/graphql-client'
 
 export default class StopSite extends Command {
@@ -15,6 +16,14 @@ export default class StopSite extends Command {
 
     async run() {
       const {args} = this.parse(StopSite)
+
+      // Automatic name lookup
+      var siteName = args.siteID;
+      if(getSiteId(siteName)){
+        var siteID = getSiteId(args.siteID);
+        console.log('Automatically found SiteID for ' + siteName + ' = ' + siteID )
+        args.siteID = siteID
+      }
 
       const query = gql`
           mutation ($siteID: ID!) {
