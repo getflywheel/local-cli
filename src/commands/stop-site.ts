@@ -27,17 +27,23 @@ export default class StopSite extends Command {
       `
 
       const client = createGraphQLClient()
-      const data = await client.request(query, {
-        siteID: args.siteID,
-      })
+      try {
+        const data = await client.request(query, {
+          siteID: args.siteID,
+        })
 
-      const table = new Table({
-        head: ['ID', 'Name', 'Status'],
-      })
+        const table = new Table({
+          head: ['ID', 'Name', 'Status'],
+        })
 
-      table.push(Object.values(data.stopSite))
+        table.push(Object.values(data.stopSite))
 
-      this.log(table.toString())
+        this.log(table.toString())
+      } catch(error) {
+        console.error("\n⚠️  Something went wrong! Are you sure the site ID is correct? \n")
+        console.error(JSON.stringify(error, undefined, 2))
+        process.exit(1)
+      }
     }
 }
 

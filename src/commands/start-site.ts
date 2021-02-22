@@ -29,16 +29,23 @@ export default class StartSite extends Command {
     `
 
     const client = createGraphQLClient()
-    const data = await client.request(query, {
-      siteID: args.siteID,
-    })
 
-    const table = new Table({
-      head: ['ID', 'Name', 'Status'],
-    })
+    try {
+      const data = await client.request(query, {
+        siteID: args.siteID,
+      })
 
-    table.push(Object.values(data.startSite))
+      const table = new Table({
+        head: ['ID', 'Name', 'Status'],
+      })
 
-    this.log(table.toString())
+      table.push(Object.values(data.startSite))
+
+      this.log(table.toString())
+    } catch(error) {
+      console.error("\n⚠️  Something went wrong! Are you sure the site ID is correct? \n")
+      console.error(JSON.stringify(error, undefined, 2))
+      process.exit(1)
+    }
   }
 }
