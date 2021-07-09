@@ -1,5 +1,6 @@
 import {Command} from '@oclif/command'
 import createGraphQLClient, {gql} from '../helpers/graphql-client'
+import getSiteId from '../helpers/get-site-id'
 import Table = require('cli-table')
 
 export default class StartSite extends Command {
@@ -18,6 +19,14 @@ export default class StartSite extends Command {
   async run() {
     const {args} = this.parse(StartSite)
 
+    // Automatic name lookup
+    var siteName = args.siteID;
+    if(getSiteId(siteName)){
+      var siteID = getSiteId(args.siteID);
+      console.log('Automatically found SiteID for ' + siteName + ' = ' + siteID )
+      args.siteID = siteID
+    }
+
     const query = gql`
       mutation ($siteID: ID!) {
         startSite(id: $siteID) {
@@ -29,16 +38,23 @@ export default class StartSite extends Command {
     `
 
     const client = createGraphQLClient()
-    const data = await client.request(query, {
-      siteID: args.siteID,
-    })
 
-    const table = new Table({
-      head: ['ID', 'Name', 'Status'],
-    })
+    try {
+      const data = await client.request(query, {
+        siteID: args.siteID,
+      })
 
-    table.push(Object.values(data.startSite))
+      const table = new Table({
+        head: ['ID', 'Name', 'Status'],
+      })
 
-    this.log(table.toString())
+      table.push(Object.values(data.startSite))
+
+      this.log(table.toString())
+    } catch(error) {
+      console.error("\n⚠️  Something went wrong! Are you sure the site ID is correct? \n")
+      console.error(JSON.stringify(error, undefined, 2))
+      process.exit(1)
+    }
   }
 }
