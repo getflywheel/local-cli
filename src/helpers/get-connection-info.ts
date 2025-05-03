@@ -9,7 +9,12 @@ export interface ConnectionInfo {
 }
 
 export default function getConnectionInfo(): ConnectionInfo {
-  const connectionInfoPath = untildify('~/Library/Application Support/Local/graphql-connection-info.json')
+  let connectionInfoPath;
+	if ( process.platform == 'darwin' ) {
+    connectionInfoPath = untildify('~/Library/Application Support/Local/graphql-connection-info.json');
+	} else {
+    connectionInfoPath = process.env.APPDATA + '\\Local\\graphql-connection-info.json';
+	}
 
   try {
     return fs.readJsonSync(connectionInfoPath)
